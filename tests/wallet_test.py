@@ -27,7 +27,6 @@ def test_it_can_load_saved_wallet_file(wallet):
 def test_it_can_sign_a_message(wallet):
     msg = 'Sign me please'
     signature = wallet.sign(msg)
-    print(signature)
     assert signature is not None
     assert type(signature) == bytes
 
@@ -36,7 +35,7 @@ def test_it_can_verify_signed_message(wallet):
     signature = wallet.sign(msg)
     assert wallet.verify(msg, signature) == True
 
-def test_it_throws_error_if_signature_is_not_valid(wallet):
+def test_it_returns_false_if_signature_is_not_valid(wallet):
     wallet.create_keys()
     msg = 'Sign me please'
     signature = wallet.sign(msg)
